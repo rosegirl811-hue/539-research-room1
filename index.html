@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#D71920">
+<title>今彩539｜數據研究室 2.0</title>
+
+<meta name="description" content="今彩539數據研究室：歷史開獎統計、五碼歷史對獎、組合回測與號碼頻率分析。">
+<meta name="application-name" content="今彩539數據研究室">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="539研究室">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icons/icon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="今彩539數據研究室 2.0">
+<meta property="og:description" content="歷史開獎統計・本期推薦號碼・歷史對獎分析。">
+<meta property="og:image" content="https://YOUR_GITHUB_NAME.github.io/539-research-room/icons/share-preview.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+:root{--navy:#9f0015;--blue:#d71920;--red:#d71920;--gold:#ffd43b;--ink:#342018;--muted:#79665b;--bg:#fff8e5;--line:#f1d88b;--white:#fff;--green:#16835d}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,"Noto Sans TC","Microsoft JhengHei",sans-serif}
+header{background:linear-gradient(112deg,#a90016 0%,#d71920 66%,#ed3028 100%);color:#fff;padding:34px max(20px,calc((100% - 1200px)/2)) 30px;position:relative;overflow:hidden;border-bottom:9px solid #ffd43b}
+header:before{content:"";position:absolute;left:0;right:0;top:0;height:8px;background:#ffd43b}
+.brand{display:inline-flex;align-items:center;gap:8px;background:#ffd43b;color:#9f0015;padding:7px 12px;border-radius:4px;font-size:11px;letter-spacing:1.6px;font-weight:950;box-shadow:0 3px 0 #8f0014}
+.hero h1{ text-shadow:0 2px 0 #8f001455}
+.stamp{background:#9f0015aa;border:2px solid #ffd43b;border-radius:8px;color:#fff7d7;font-weight:700}
+header:after{content:"539";position:absolute;right:7%;top:-45px;font-size:190px;font-weight:900;color:#ffffff0b;letter-spacing:-14px}
+.brand{font-size:11px;letter-spacing:2px;color:#fff2bf;font-weight:800}.hero{display:flex;justify-content:space-between;align-items:end;gap:20px;position:relative;z-index:1}.hero h1{font-size:clamp(28px,4vw,42px);margin:12px 0 7px}.hero p{margin:0;color:#fff4d2}.stamp{border:1px solid #ffffff55;border-radius:12px;padding:10px 14px;font-size:12px;color:#fff8df;line-height:1.6}
+main{max-width:1200px;margin:22px auto;padding:0 18px 55px}
+.notice{border-left:7px solid #d71920;box-shadow:0 3px 0 #ffd43b}
+.metric{border-top:5px solid #ffd43b}
+.metric:nth-child(1),.metric:nth-child(3){border-top-color:#d71920}
+.panel h2{border-left:5px solid #ffd43b;padding-left:10px}
+.tabs{background:#fff0bd;padding:8px;border-radius:12px;border:1px solid #f0d47c}
+.tab{border-color:#e8c85e}
+.tab.active{background:#d71920;box-shadow:0 3px 0 #970014}
+.btn{background:#d71920;box-shadow:0 3px 0 #970014}
+.btn.secondary{background:#a90016}
+.btn.light{background:#ffd43b;color:#870012;box-shadow:0 3px 0 #d2a900}
+.panel{border-top:3px solid #ffd43b}
+.prize{background:linear-gradient(180deg,#fff4c7,#fff)}
+.notice{background:#fff3c4;border:1px solid #f2cd54;border-radius:12px;padding:13px 16px;color:#765000;font-size:13px;line-height:1.7;margin-bottom:16px}
+.statusline{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.dot{width:8px;height:8px;border-radius:50%;background:#c28b24;display:inline-block}.dot.ok{background:var(--green)}.dot.bad{background:var(--red)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.metric,.panel{background:white;border:1px solid var(--line);border-radius:15px;box-shadow:0 4px 14px #18365308}.metric{padding:16px}.metric small{color:var(--muted)}.metric strong{display:block;font-size:24px;margin-top:7px;color:var(--navy)}
+.panel{padding:21px;margin-top:16px}.panel h2{font-size:18px;margin:0 0 5px;color:var(--navy)}.sub{color:var(--muted);font-size:13px;margin:0 0 16px;line-height:1.65}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:18px 0 2px}.tab{border:1px solid var(--line);background:#fff;color:var(--navy);border-radius:9px;padding:10px 14px;font-weight:700;cursor:pointer}.tab.active{background:linear-gradient(120deg,#bd001b,#e31b23);color:#fff;border-color:#bd001b}
+.view{display:none}.view.active{display:block}.columns{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+label{display:block;font-size:12px;font-weight:800;margin:10px 0 6px;color:#42566d}input,select{font:inherit;border:1px solid #cbd6e1;border-radius:9px;padding:10px 11px;background:#fff;color:var(--ink);width:100%}
+.inputballs{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}.btn{border:0;border-radius:9px;background:var(--red);color:#fff;font-weight:800;padding:10px 15px;cursor:pointer}.btn.secondary{background:var(--navy)}.btn.light{background:#fff0b3;color:#8a0012}.btn:disabled{opacity:.45;cursor:not-allowed}
+.ballrow{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.ball{width:43px;height:43px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:#8a0012;font-weight:950;background:radial-gradient(circle at 32% 25%,#fff8b8 0%,#ffdf45 42%,#f2aa00 100%);border:2px solid #fff0a0;box-shadow:inset -3px -4px 7px #a86b1b55,0 3px 7px #a80d2a33}.ball.blue{background:linear-gradient(145deg,#ffdf45,#f4a900);color:#8a0012}.ball.gold{background:linear-gradient(145deg,#fff07c,#f1b900);color:#8a0012}
+.result{margin-top:13px;border:1px solid var(--line);border-radius:11px;padding:13px;background:#fffdf6;min-height:48px;font-size:13px;line-height:1.7}.muted{color:var(--muted)}.small{font-size:11px;color:var(--muted);line-height:1.6}
+.prizes{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:11px}
+.recent-list{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-top:13px}
+.recent-item{background:linear-gradient(180deg,#fff8df,#fff);border:1px solid #f0d47c;border-radius:12px;padding:12px 10px;text-align:center;min-width:0}
+.recent-item.latest{border:2px solid #d71920;box-shadow:0 3px 0 #ffd43b}
+.recent-head{display:flex;justify-content:space-between;align-items:center;gap:8px;color:#8a0012;font-size:12px;font-weight:900}
+.recent-date{font-size:11px;color:var(--muted);margin:5px 0 9px}
+.recent-balls{display:flex;justify-content:center;gap:5px;flex-wrap:wrap}
+.recent-balls .ball{width:34px;height:34px;font-size:12px}
+@media(max-width:800px){.recent-list{grid-template-columns:repeat(2,minmax(0,1fr))}.recent-item:first-child{grid-column:span 2}}
+@media(max-width:430px){.recent-list{grid-template-columns:1fr}.recent-item:first-child{grid-column:auto}.recent-balls .ball{width:36px;height:36px}}
+.prize{border-radius:9px;padding:10px;background:#fff4cf;border:1px solid #f4dfa0;text-align:center}.prize b{display:block;color:var(--red);font-size:16px}.prize small{color:var(--muted)}
+.tablewrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:12px;white-space:nowrap}th,td{text-align:left;padding:10px 9px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-weight:800;background:#fff3c7;position:sticky;top:0}
+.freq{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.freqitem{background:#fff8df;border:1px solid #f5e5b4;border-radius:9px;padding:8px 10px;display:flex;justify-content:space-between;font-size:12px}.bar{height:5px;background:#e7edf3;border-radius:6px;margin-top:5px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,#f2b900,#e51b23)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}.chip{background:#fff0b3;color:#8a0012;padding:5px 9px;border-radius:99px;font-size:11px;font-weight:800}
+.combo{border:1px solid var(--line);border-radius:11px;padding:12px;margin:8px 0;background:#fff}.combohead{display:flex;justify-content:space-between;align-items:center;gap:8px}.combohead strong{color:var(--navy)}.del{border:0;background:#fff0f1;color:var(--red);border-radius:7px;padding:5px 8px;cursor:pointer}
+footer{max-width:1200px;margin:auto;padding:0 18px 35px;color:var(--muted);font-size:11px;line-height:1.8}
+@media(max-width:800px){.grid{grid-template-columns:repeat(2,1fr)}.columns{grid-template-columns:1fr}.hero{align-items:start;flex-direction:column}.stamp{display:none}.freq{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:430px){main{padding:0 11px 35px}.panel{padding:15px}.inputballs{gap:5px}.ball{width:39px;height:39px}.prizes{grid-template-columns:repeat(2,1fr)}.metric strong{font-size:20px}}
+
+
+
+.hit-summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin:14px 0 10px}
+.hit-count-card{padding:15px 12px;border-radius:13px;text-align:center;border:1px solid #efd88d;background:linear-gradient(180deg,#fff9e7,#fff);box-shadow:0 3px 9px #a900160b}
+.hit-count-card small{display:block;font-weight:900;color:#7b5c36;font-size:12px}
+.hit-count-card strong{display:block;font-size:34px;line-height:1.3;margin:6px 0;color:#a90016;font-variant-numeric:tabular-nums}
+.hit-count-card span{font-size:11px;color:#79665b}
+.hit-count-card.grand{border-top:5px solid #D71920}
+.hit-count-card.second{border-top:5px solid #E34B35}
+.hit-count-card.third{border-top:5px solid #F0B400}
+.hit-count-card.fourth{border-top:5px solid #D8A82B}
+.hit-summary-foot{font-size:12px;line-height:1.7;color:#79665b;background:#fff5d6;border-radius:9px;padding:10px 12px}
+@media(max-width:650px){.hit-summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.schedule-highlight{margin:13px 0;padding:17px;border-radius:14px;text-align:center;background:linear-gradient(115deg,#a90016,#d71920 68%,#ee352c);color:white;border-bottom:5px solid #ffd43b;box-shadow:0 5px 14px #a9001625}
+.schedule-days{font-size:14px;font-weight:900;letter-spacing:2px;color:#fff2b9}
+.schedule-time{font-size:clamp(38px,6vw,52px);font-weight:1000;line-height:1.15;letter-spacing:2px;text-shadow:0 2px 0 #8e0012}
+.schedule-desc{font-size:12px;color:#fff4d4}
+.schedule-timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.schedule-timeline>div{display:flex;flex-direction:column;align-items:center;gap:5px;text-align:center;padding:11px 6px;background:#fff8e4;border:1px solid #f0d47c;border-radius:10px}
+.schedule-timeline b{color:#a90016;font-size:13px}.schedule-timeline span{font-size:11px;color:#79665b}
+@media(max-width:600px){.schedule-timeline{grid-template-columns:repeat(2,1fr)}}
+.recommend-panel{position:relative;overflow:hidden;border:2px solid #d71920!important;background:linear-gradient(135deg,#fff9e8 0%,#fff 48%,#fff0c2 100%);box-shadow:0 8px 26px #a9001620,0 0 0 5px #ffd43b55!important}
+.recommend-panel:before{content:"本期專屬推薦";position:absolute;right:-34px;top:17px;transform:rotate(35deg);background:#ffd43b;color:#970014;font-size:11px;font-weight:950;letter-spacing:1px;padding:6px 42px;box-shadow:0 2px 5px #7a001533}
+.recommend-title{display:flex;align-items:center;gap:9px;color:#a90016;font-size:20px;font-weight:950}
+.recommend-title .crown{display:inline-flex;width:38px;height:38px;border-radius:12px;align-items:center;justify-content:center;background:linear-gradient(145deg,#ffe982,#ffbf00);border:1px solid #e4a900;box-shadow:0 3px 0 #bd8500;color:#8b0013;font-size:20px}
+.recommend-balls{display:flex;justify-content:center;gap:clamp(7px,2vw,17px);flex-wrap:wrap;margin:20px 0 15px;padding:20px 12px;border:2px dashed #d71920;border-radius:17px;background:radial-gradient(circle at 50% 0%,#fff0b5,#fffaf0 70%);}
+.recommend-ball{width:clamp(49px,7vw,66px);height:clamp(49px,7vw,66px);border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 30% 22%,#fffbd0 0%,#ffe45b 36%,#f5b500 78%,#d99500 100%);border:3px solid #fff3a3;box-shadow:0 0 0 3px #d71920,0 5px 0 #a90016,0 8px 17px #9d001d30;color:#8d0014;font-size:clamp(20px,3vw,26px);font-weight:1000;text-shadow:0 1px #fff7c2;animation:holyPulse 2.6s ease-in-out infinite}
+.recommend-ball:nth-child(2){animation-delay:.12s}.recommend-ball:nth-child(3){animation-delay:.24s}.recommend-ball:nth-child(4){animation-delay:.36s}.recommend-ball:nth-child(5){animation-delay:.48s}
+@keyframes holyPulse{0%,100%{transform:translateY(0);filter:drop-shadow(0 0 0 #ffd43b)}50%{transform:translateY(-3px);filter:drop-shadow(0 0 7px #ffd43b)}}
+.recommend-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:12px 0}
+.recommend-stat{background:#fff;border:1px solid #f0d47c;border-radius:10px;padding:9px 5px;text-align:center}
+.recommend-stat b{display:block;color:#a90016;font-size:17px}.recommend-stat small{font-size:10px;color:var(--muted)}
+.recommend-note{background:#fff4c8;border-left:5px solid #d71920;border-radius:8px;padding:11px 13px;color:#654400;font-size:12px;line-height:1.75}
+
+/* Diamond sparkle treatment for the sacred pick */
+.recommend-panel{isolation:isolate}
+.recommend-panel:after{
+ content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.7;
+ background:
+ radial-gradient(2px 2px at 8% 18%,#fff 98%,transparent),
+ radial-gradient(3px 3px at 88% 24%,#fff 98%,transparent),
+ radial-gradient(2px 2px at 72% 78%,#fff 98%,transparent),
+ radial-gradient(2px 2px at 18% 82%,#fff 98%,transparent),
+ radial-gradient(3px 3px at 48% 10%,#fff 98%,transparent),
+ radial-gradient(2px 2px at 94% 62%,#fff 98%,transparent);
+ animation:diamondDust 3.8s ease-in-out infinite alternate;
+}
+.recommend-balls{position:relative;overflow:hidden;border-style:solid;box-shadow:inset 0 0 24px #ffd43b35,0 0 0 3px #fff5ce,0 0 0 5px #d7192030}
+.recommend-balls:before,.recommend-balls:after{
+ content:"✧　✦　⋄　✧";position:absolute;pointer-events:none;color:#c28a00;
+ font-size:19px;letter-spacing:13px;white-space:nowrap;text-shadow:0 0 8px #fff,0 0 13px #f5c400;
+ animation:diamondSweep 4.2s linear infinite;opacity:.8
+}
+.recommend-balls:before{top:3px;left:-30%;}.recommend-balls:after{bottom:1px;right:-30%;animation-delay:-2.1s}
+.recommend-ball{position:relative;z-index:1}
+.recommend-ball:after{content:"✦";position:absolute;right:1px;top:-7px;color:#fff;font-size:15px;text-shadow:0 0 5px #d89b00,0 0 10px #fff;animation:twinkle 1.7s ease-in-out infinite}
+.recommend-ball:nth-child(2):after{animation-delay:.25s}.recommend-ball:nth-child(3):after{animation-delay:.5s}.recommend-ball:nth-child(4):after{animation-delay:.75s}.recommend-ball:nth-child(5):after{animation-delay:1s}
+@keyframes diamondDust{0%{opacity:.22;transform:translateY(0)}50%{opacity:.8}100%{opacity:.38;transform:translateY(-5px)}}
+@keyframes diamondSweep{0%{transform:translateX(0) rotate(-4deg);opacity:.15}45%{opacity:.9}100%{transform:translateX(130%) rotate(4deg);opacity:.15}}
+@keyframes twinkle{0%,100%{transform:scale(.65) rotate(0);opacity:.45}50%{transform:scale(1.35) rotate(35deg);opacity:1}}
+@media(prefers-reduced-motion:reduce){.recommend-panel:after,.recommend-balls:before,.recommend-balls:after,.recommend-ball,.recommend-ball:after{animation:none!important}}
+@media(max-width:600px){.recommend-stats{grid-template-columns:repeat(2,1fr)}.recommend-panel:before{font-size:9px;right:-39px}}
+
+</style></head>
+<body>
+<header><div class="brand">★ TAIWAN LOTTERY　今彩539數據研究室</div><div class="hero"><div><h1>今彩539 數據研究室 <span style="display:inline-block;background:#ffd43b;color:#9f0015;border-radius:7px;padding:2px 9px;font-size:.55em;vertical-align:middle">2.0</span></h1><p>台彩紅 × 金黃主視覺　｜　官方資料同步・歷史對獎・組合回測</p></div><div class="stamp">非台灣彩券官方網站<br>資料分析與娛樂參考</div></div></header>
+
+<div id="appActions" style="max-width:1200px;margin:12px auto 0;padding:0 18px;display:flex;gap:8px;flex-wrap:wrap">
+<button class="btn" id="installAppBtn" style="display:none">📲 安裝手機 APP</button>
+<button class="btn secondary" id="shareLineBtn">💚 分享給 LINE 好友</button>
+<span id="installHelp" class="small" style="align-self:center"></span>
+</div>
+
+<main>
+<div class="notice">
+ <div class="statusline"><span class="dot" id="statusDot"></span><b>資料同步狀態：</b><span id="dataStatus">正在讀取歷史資料索引…</span><button class="btn light" id="refreshBtn" style="padding:6px 10px;margin-left:auto">重新整理資料</button></div>
+ <div class="small" id="dataMeta">資料範圍：2007 年起。開獎資料由專案同步流程從台灣彩券官方 API 取得；開啟本機預覽檔不會執行排程同步，需部署專案後啟用 GitHub Actions。</div>
+</div>
+<div class="grid">
+ <div class="metric"><small>已載入歷史期數</small><strong id="kpiDraws">—</strong></div>
+ <div class="metric"><small>資料涵蓋期間</small><strong id="kpiRange">—</strong></div>
+ <div class="metric"><small>最新一期</small><strong id="kpiLatest">—</strong></div>
+ <div class="metric"><small>單注頭獎理論機率</small><strong>1 / 575,757</strong></div>
+</div>
+<section class="panel" id="recentDrawPanel">
+ <div class="recent-head"><h2 style="margin:0">📣 最近五期開獎號碼</h2><span class="chip">最新一期在最前</span></div>
+ <p class="sub" style="margin-top:7px">依目前已載入的歷史資料，顯示最近五期開獎日期、期別與五個獎號。</p>
+ <div id="recentDraws" class="recent-list"><p class="small">歷史資料載入後，這裡會自動顯示最近五期開獎號碼。</p></div>
+</section>
+<section class="panel" id="drawSchedulePanel">
+ <div class="recent-head"><h2 style="margin:0">🕣 今彩539開獎時間</h2><span class="chip">台灣時間</span></div>
+ <div class="schedule-highlight">
+  <div class="schedule-days">每週一 ～ 週六</div>
+  <div class="schedule-time">20:30</div>
+  <div class="schedule-desc">晚間 8:30 正式開獎｜週日一般不開獎</div>
+ </div>
+ <div class="schedule-timeline">
+  <div><b>20:00</b><span>停止投注</span></div>
+  <div><b>20:30–21:00</b><span>正式開獎時段</span></div>
+  <div><b>約 21:30</b><span>官方公告當日獎號</span></div>
+  <div><b>約 22:00</b><span>公告完整開獎結果</span></div>
+ </div>
+ <p class="small" style="margin:10px 0 0">春節或特殊加開、停開日期依台灣彩券官方公告為準。</p>
+ <p class="small" style="margin:5px 0 0">官方來源：<a href="https://www.taiwanlottery.com/customer_service/faq/" target="_blank" rel="noopener">台灣彩券問與答－開獎時間</a></p>
+</section>
+<section class="panel recommend-panel" id="recommendPanel">
+ <div class="recommend-title"><span class="crown">♛</span><span>針對本期・神聖推薦號碼 <small style="display:block;font-size:10px;letter-spacing:2px;color:#bd8a16;margin-top:2px">✧ DIAMOND LUCKY SELECTION ✧</small></span></div>
+ <p class="sub" style="margin-top:8px">不是隨機抽號。依完整歷史開獎頻率與最近五期的號碼表現加權評分，選出模型分數最高的五碼。</p>
+ <div id="recommendNumbers" class="recommend-balls"><span class="small">請先載入歷史開獎資料，系統才可計算本期推薦。</span></div>
+ <div id="recommendStats" class="recommend-stats"></div>
+ <div class="actions" style="justify-content:center"><button class="btn" id="useRecommendation" disabled>使用這組號碼進行歷史對獎</button></div>
+ <div class="recommend-note" style="margin-top:13px"><b>推薦模型：</b>歷史全期出現頻率標準分數占 70%，最近五期出現趨勢標準分數占 30%；依綜合分數排序取前五名。資料每次更新後會重新計算。<br><b>重要提醒：</b>這是可解釋的歷史統計評分與選號參考，不是能預知開獎的預測模型；今彩539每組五碼的下一期中獎機率完全相同，歷史表現不會提高中獎機率。</div>
+</section>
+<nav class="tabs">
+ <button class="tab active" data-tab="check">歷史對獎</button><button class="tab" data-tab="backtest">組合回測</button><button class="tab" data-tab="saved">我的號碼庫</button><button class="tab" data-tab="frequency">號碼統計</button>
+</nav>
+<section class="view active" id="view-check">
+ <div class="columns">
+  <section class="panel"><h2>① 輸入五碼・即時查詢</h2><p class="sub">輸入五個不重複號碼，立即查詢所有歷史中獎期別。</p>
+   <div class="inputballs"><input class="num" type="number" min="1" max="39" value="05"><input class="num" type="number" min="1" max="39" value="17"><input class="num" type="number" min="1" max="39" value="27"><input class="num" type="number" min="1" max="39" value="34"><input class="num" type="number" min="1" max="39" value="37"></div>
+   <div class="actions"><button class="btn" id="checkBtn">查詢全部歷史</button><button class="btn light" id="randomBtn">隨機五碼</button><button class="btn secondary" id="saveCurrentBtn">儲存這組號碼</button></div>
+   <div class="result" id="checkResult">請輸入五碼並查詢。歷史資料載入後會顯示命中期數、獎項及估算累計獎金。</div>
+   <div class="prizes"><div class="prize"><small>頭獎・5碼</small><b>$8,000,000</b></div><div class="prize"><small>貳獎・4碼</small><b>$20,000</b></div><div class="prize"><small>參獎・3碼</small><b>$300</b></div><div class="prize"><small>肆獎・2碼</small><b>$50</b></div></div>
+   <p class="small">固定獎額估算，不代表實際領取金額；實際獎金依各期官方派彩、均分及兌領規則為準。</p>
+  </section>
+  <section class="panel"><h2>② 組合的理論中獎機率</h2><p class="sub">任何固定五碼組合的單期機率完全相同，歷史頻率不會改變下一期機率。</p>
+   <div id="chosenBalls" class="ballrow"></div>
+   <div class="result" style="background:#fff4c8;border-color:#f0cf5a;margin-bottom:12px">
+    <b style="color:#a90016">目前選取組合：</b><span id="probabilitySelection">05・17・27・34・37</span>
+    <div class="small" style="margin-top:5px">以下是「單注固定理論機率」，更換號碼不會改變數值；會隨選號改變的是下方的歷史頻率與回測結果。</div>
+   </div>
+   <div class="tablewrap"><table><thead><tr><th>命中數</th><th>獎項</th><th>單注理論機率</th><th>約等於</th></tr></thead><tbody>
+    <tr><td>5碼</td><td>頭獎</td><td>0.000174%</td><td>1 / 575,757</td></tr><tr><td>4碼</td><td>貳獎</td><td>0.029526%</td><td>1 / 3,387</td></tr><tr><td>3碼</td><td>參獎</td><td>0.974369%</td><td>1 / 103</td></tr><tr><td>2碼</td><td>肆獎</td><td>10.393274%</td><td>1 / 9.62</td></tr><tr><td>至少2碼</td><td>任一獎</td><td>11.397343%</td><td>1 / 8.77</td></tr>
+   </tbody></table></div><div class="result" id="chosenFrequency">載入歷史資料後顯示這五碼的歷史出現頻率。</div>
+  </section>
+ </div>
+ <section class="panel"><h2>③ 歷史命中次數統計</h2>
+  <p class="sub">直接統計目前這組五碼，對照所有已載入歷史開獎紀錄，各獎項分別命中幾次。</p>
+  <div class="hit-summary-grid" id="hitSummary">
+   <div class="hit-count-card grand"><small>頭獎・命中5碼</small><strong>—</strong><span>尚未查詢</span></div>
+   <div class="hit-count-card second"><small>貳獎・命中4碼</small><strong>—</strong><span>尚未查詢</span></div>
+   <div class="hit-count-card third"><small>參獎・命中3碼</small><strong>—</strong><span>尚未查詢</span></div>
+   <div class="hit-count-card fourth"><small>肆獎・命中2碼</small><strong>—</strong><span>尚未查詢</span></div>
+  </div>
+  <div class="hit-summary-foot" id="hitSummaryFoot">輸入或隨機產生一組五碼，按「查詢全部歷史」，即可看到這組號碼在歷史中各獎項的命中次數。</div>
+ </section>
+</section>
+<section class="view" id="view-backtest">
+ <section class="panel"><h2>④ 五碼組合歷史回測</h2><p class="sub">以同一組號碼回測每一期都投注一注的歷史結果。成本依每注50元計算，獎金以固定獎額估算，未納入實際均分與稅務。</p>
+ <div class="columns"><div><label>回測區間</label><select id="backPeriod"><option value="all">全部歷史</option><option value="365">最近一年（約）</option><option value="100">最近100期</option><option value="300">最近300期</option><option value="500">最近500期</option><option value="1000">最近1000期</option></select></div><div><label>選擇回測組合</label><select id="backCombo"></select></div></div>
+ <div class="actions"><button class="btn" id="runBacktest">執行回測</button></div><div id="backResult" class="result">請先儲存一組號碼，或在歷史對獎頁將目前組合儲存後執行。</div><div class="tablewrap" id="backTable"></div></section>
+</section>
+<section class="view" id="view-saved">
+ <section class="panel"><h2>⑤ 我的自選號碼庫</h2><p class="sub">多組號碼保存在目前瀏覽器的 localStorage；同一瀏覽器再次開啟仍可使用，不會上傳伺服器。</p>
+ <div class="actions"><button class="btn light" id="exportSaved">匯出號碼庫 JSON</button><label class="btn light" for="importSaved" style="margin:0;cursor:pointer">匯入號碼庫 JSON</label><input id="importSaved" type="file" accept=".json,application/json" hidden></div>
+ <div id="savedList"><p class="small">尚未儲存任何組合。</p></div></section>
+</section>
+<section class="view" id="view-frequency">
+ <section class="panel"><h2>⑥ 01–39 歷史出現頻率</h2><p class="sub">熱門／冷門僅代表已發生資料的次數。理論平均每個號碼每期出現機率為5/39。</p>
+ <div class="actions"><select id="freqWindow" style="width:auto"><option value="all">全部歷史</option><option value="100">最近100期</option><option value="300">最近300期</option><option value="500">最近500期</option><option value="1000">最近1000期</option></select><button class="btn light" id="renderFreqBtn">更新統計</button></div>
+ <div id="frequencyGrid" class="freq" style="margin-top:15px"></div></section>
+</section>
+</main>
+<footer>本網站為非官方研究工具。今彩539每期由39個號碼中開出5個，所有五碼組合的單期機率相同。歷史頻率、熱門冷門與回測結果均不能預測或提高未來中獎機率。資料源自台灣彩券官方 API，實際開獎與兌獎以台灣彩券公告為準。未滿18歲不得購買或兌領彩券。</footer>
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)], pad=n=>String(n).padStart(2,'0');
+let draws=[],matches=[],recommendedNumbers=[],current=[5,17,27,34,37],saved=JSON.parse(localStorage.getItem('539_saved_sets')||'[]');
+const PRIZE={5:['頭獎',8000000],4:['貳獎',20000],3:['參獎',300],2:['肆獎',50]};
+function chosen(){let a=$$('.num').map(x=>Number(x.value));if(a.length!==5||a.some(n=>!Number.isInteger(n)||n<1||n>39)||new Set(a).size!==5)throw Error('請輸入01–39且不重複的五個號碼。');return a.sort((x,y)=>x-y)}
+function prize(k){return PRIZE[k]||null}
+function normalizeDraw(d){let nums=d.nums||d.drawNumberSize||[];return {date:String(d.date||d.lotteryDate||'').slice(0,10),period:String(d.period||''),nums:nums.map(Number).sort((a,b)=>a-b)}}
+function validDraw(d){return d.nums.length===5&&new Set(d.nums).size===5&&d.nums.every(n=>Number.isInteger(n)&&n>=1&&n<=39)}
+function setStatus(msg,kind='warn'){ $('#dataStatus').textContent=msg;$('#statusDot').className='dot '+(kind==='ok'?'ok':kind==='bad'?'bad':'');}
+function renderKpis(){ $('#kpiDraws').textContent=draws.length.toLocaleString();if(draws.length){let s=draws[0],e=draws[draws.length-1];$('#kpiRange').textContent=(s.date||'2007')+'—'+(e.date||'最新');$('#kpiLatest').textContent=e.period||e.date;}else{$('#kpiRange').textContent='—';$('#kpiLatest').textContent='—';}}
+function renderRecentDraws(){
+ const box=$('#recentDraws');
+ if(!draws.length){box.innerHTML='<p class="small">尚未載入開獎資料，請先重新整理資料。</p>';return}
+ const latest=draws.slice(-5).reverse();
+ box.innerHTML=latest.map((d,i)=>`<article class="recent-item ${i===0?'latest':''}">
+  <div class="recent-head"><span>${i===0?'最新一期':'第 '+(i+1)+' 近'}</span><span>${d.period?`#${d.period}`:''}</span></div>
+  <div class="recent-date">${d.date||'日期未提供'}</div>
+  <div class="recent-balls">${d.nums.map(n=>`<span class="ball">${pad(n)}</span>`).join('')}</div>
+ </article>`).join('');
+}
+function renderRecommendation(){
+ const balls=$('#recommendNumbers'),stats=$('#recommendStats'),btn=$('#useRecommendation');
+ if(!draws.length){recommendedNumbers=[];balls.innerHTML='<span class="small">請先載入歷史開獎資料，系統才可計算本期推薦。</span>';stats.innerHTML='';btn.disabled=true;return}
+ const allCounts=getCounts(draws),recent=draws.slice(-5),recentCounts=getCounts(recent),p=5/39;
+ const histExpected=draws.length*p,histSd=Math.sqrt(Math.max(1,draws.length*p*(1-p)));
+ const recentExpected=recent.length*p,recentSd=Math.sqrt(Math.max(1,recent.length*p*(1-p)));
+ const ranked=Array.from({length:39},(_,i)=>{const n=i+1,hz=(allCounts[n]-histExpected)/histSd,rz=(recentCounts[n]-recentExpected)/recentSd;return {n,h:allCounts[n],r:recentCounts[n],score:hz*.7+rz*.3,hz,rz}})
+  .sort((a,b)=>b.score-a.score||b.h-a.h||b.r-a.r||a.n-b.n);
+ recommendedNumbers=ranked.slice(0,5).map(x=>x.n).sort((a,b)=>a-b);
+ const selected=recommendedNumbers.map(n=>ranked.find(x=>x.n===n));
+ balls.innerHTML=recommendedNumbers.map(n=>`<span class="recommend-ball">${pad(n)}</span>`).join('');
+ stats.innerHTML=selected.map(x=>`<div class="recommend-stat"><b>${pad(x.n)}</b><small>歷史 ${x.h} 次<br>近五期 ${x.r} 次</small></div>`).join('');
+ btn.disabled=false;
+}
+const LOTTERY_API='https://api.taiwanlottery.com/TLCAPIWeB/Lottery/Daily539Result';
+function monthList(from,to){let out=[],[y,m]=from.split('-').map(Number),[ey,em]=to.split('-').map(Number);while(y<ey||(y===ey&&m<=em)){out.push(`${y}-${String(m).padStart(2,'0')}`);if(++m===13){m=1;y++}}return out}
+async function fetchOfficialMonth(month){
+ const url=`${LOTTERY_API}?period&month=${month}&pageSize=31`;let error;
+ for(let attempt=1;attempt<=3;attempt++)try{
+  const res=await fetch(url,{cache:'no-store',headers:{Accept:'application/json'}});if(!res.ok)throw Error(`HTTP ${res.status}`);
+  const json=await res.json(),content=json.content||{},rows=Object.values(content).find(Array.isArray)||[];
+  return rows.map(r=>normalizeDraw({period:r.period,date:r.lotteryDate,nums:r.drawNumberSize})).filter(d=>d.date&&validDraw(d));
+ }catch(e){error=e;if(attempt<3)await new Promise(r=>setTimeout(r,700*attempt))}
+ throw Error(`${month}：${error?.message||'官方資料讀取失敗'}`);
+}
+async function importAllHistory(){
+ const end=new Date(),endMonth=`${end.getFullYear()}-${String(end.getMonth()+1).padStart(2,'0')}`;
+ const months=monthList('2007-01',endMonth),all=new Map();let done=0,failed=[];
+ // 以小批次並行，降低對官方網站的瞬間請求量；單月失敗會重試並保留錯誤訊息。
+ for(let i=0;i<months.length;i+=4){
+  const batch=months.slice(i,i+4),results=await Promise.all(batch.map(async m=>{try{return {m,rows:await fetchOfficialMonth(m)}}catch(e){return {m,error:e.message}}}));
+  for(const x of results){if(x.error)failed.push(x.error);else x.rows.forEach(d=>all.set(d.period||d.date,d));done++}
+  setStatus(`正在向台彩匯入歷年資料… ${Math.min(i+4,months.length)}/${months.length} 個月份`);
+  $('#dataMeta').textContent=`官方資料回補中：已處理 ${Math.min(i+4,months.length)} / ${months.length} 個月份；已取得 ${all.size.toLocaleString()} 期。請保持此頁開啟。`;
+ }
+ const rows=[...all.values()].sort((a,b)=>String(a.date).localeCompare(String(b.date))||Number(a.period)-Number(b.period));
+ if(!rows.length)throw Error('官方 API 沒有回傳有效資料；可能是網路或跨來源存取限制。');
+ if(failed.length)throw Error(`已取得 ${rows.length} 期，但有 ${failed.length} 個月份失敗（${failed.slice(0,3).join('；')}）。請稍後按重新整理資料補齊。`);
+ const payload={game:'今彩539',source:'台灣彩券官方 API Daily539Result',updatedAt:new Date().toISOString(),range:{from:rows[0].date,to:rows.at(-1).date},count:rows.length,draws:rows};
+ try{localStorage.setItem('539_history_cache_v1',JSON.stringify(payload))}catch(e){console.warn('瀏覽器儲存空間不足，資料僅保留於本次頁面',e)}
+ return payload;
+}
+async function loadData(force=false){
+ setStatus('正在讀取歷史資料…');$('#refreshBtn').disabled=true;
+ try{
+  let payload=null,source='';
+  if(!force){
+   try{const cached=localStorage.getItem('539_history_cache_v1');if(cached){payload=JSON.parse(cached);source='瀏覽器快取'}}catch{}
+  }
+  if(!payload){
+   try{const url='./data/draws.json'+(force?'?t='+Date.now():'');const res=await fetch(url,{cache:force?'no-store':'default'});if(!res.ok)throw Error('HTTP '+res.status);payload=await res.json();source='專案資料檔'}catch(localError){
+    setStatus('本機資料檔無法讀取，改向台灣彩券官方 API 匯入…');payload=await importAllHistory();source='台灣彩券官方 API 即時回補';
+   }
+  }
+  let rows=Array.isArray(payload)?payload:(payload.draws||[]),clean=rows.map(normalizeDraw).filter(validDraw);
+  if(!clean.length && source==='專案資料檔'){
+   setStatus('資料檔目前為空，改向台灣彩券官方 API 匯入…');payload=await importAllHistory();source='台灣彩券官方 API 即時回補';rows=payload.draws;clean=rows.map(normalizeDraw).filter(validDraw);
+  }
+  const map=new Map();clean.forEach(d=>map.set(d.period||d.date,d));
+  draws=[...map.values()].sort((a,b)=>String(a.date).localeCompare(String(b.date))||Number(a.period)-Number(b.period));
+  if(!draws.length)throw Error('目前資料沒有有效開獎紀錄');
+  const updated=payload.updatedAt||'資料版本未標示';
+  setStatus(`成功載入 ${draws.length.toLocaleString()} 期｜來源：${source}`,'ok');
+  $('#dataMeta').textContent=`資料來源：台灣彩券官方 API（Daily539Result）｜涵蓋 ${draws[0].date} 至 ${draws.at(-1).date}｜資料更新時間：${updated}。資料已暫存於此瀏覽器。`;
+  renderKpis();renderRecentDraws();renderRecommendation();renderChosenFreq();renderFrequency();runCheck(false);populateBacktest();
+ }catch(e){
+  draws=[];renderKpis();renderRecentDraws();renderRecommendation();setStatus('資料載入失敗：'+e.message,'bad');
+  $('#dataMeta').textContent='請確認網路連線及瀏覽器是否允許存取台灣彩券官方 API；若有月份讀取失敗，可再次按「重新整理資料」補齊。';
+ }finally{$('#refreshBtn').disabled=false}
+}
+function getCounts(list){let c=Array(40).fill(0);list.forEach(d=>d.nums.forEach(n=>c[n]++));return c}
+function renderChosenFreq(){try{let a=chosen();$('#chosenBalls').innerHTML=a.map(n=>`<span class="ball">${pad(n)}</span>`).join('');$('#probabilitySelection').textContent=a.map(pad).join('・');if(!draws.length){$('#chosenFrequency').textContent='尚無已載入歷史資料；載入後會依這組號碼更新歷史頻率。';return}let c=getCounts(draws),avg=draws.length*5/39;$('#probabilitySelection').textContent=a.map(pad).join('・');
+ $('#chosenFrequency').innerHTML='<b style="color:#a90016">這五碼的歷史出現頻率</b><br>'+a.map(n=>`${pad(n)}：${c[n]} 次（${(c[n]/draws.length*100).toFixed(2)}%期數）`).join('　｜　')+`<br><span class="small">樣本 ${draws.length.toLocaleString()} 期；單號理論期望 ${avg.toFixed(1)} 次。這是歷史統計，不是下一期預測。</span>`;}catch(e){}}
+function runCheck(showAlert=true){try{
+ let a=chosen();current=a;renderChosenFreq();
+ if(!draws.length){
+  $('#checkResult').textContent='目前沒有載入完整歷史資料，請先部署資料同步版本。';
+  $('#hitSummary').innerHTML='<p class="small">尚無歷史資料可供統計。</p>';
+  $('#hitSummaryFoot').textContent='請先成功載入歷史開獎資料。';
+  return [];
+ }
+ matches=draws.map(d=>{let hit=a.filter(n=>d.nums.includes(n)).length;return {...d,hit,award:prize(hit)}});
+ const c={2:0,3:0,4:0,5:0};matches.forEach(m=>{if(m.hit>=2)c[m.hit]++});
+ const totalHit=c[2]+c[3]+c[4]+c[5];
+ const totalPrize=matches.reduce((sum,m)=>sum+(m.hit>=2?m.award[1]:0),0);
+ const labels={5:'頭獎',4:'貳獎',3:'參獎',2:'肆獎'};
+ $('#hitSummary').innerHTML=[
+  {hit:5,cls:'grand',name:'頭獎',desc:'命中5碼'},
+  {hit:4,cls:'second',name:'貳獎',desc:'命中4碼'},
+  {hit:3,cls:'third',name:'參獎',desc:'命中3碼'},
+  {hit:2,cls:'fourth',name:'肆獎',desc:'命中2碼'}
+ ].map(x=>`<div class="hit-count-card ${x.cls}"><small>${x.name}・${x.desc}</small><strong>${c[x.hit].toLocaleString()}</strong><span>歷史命中次數</span></div>`).join('');
+ $('#hitSummaryFoot').innerHTML=`這組號碼：<b style="color:#a90016">${a.map(pad).join('・')}</b>　
+ 共比對 <b>${draws.length.toLocaleString()}</b> 期歷史紀錄，累計中獎 <b>${totalHit.toLocaleString()}</b> 次。
+ <br>固定獎額估算合計：<b style="color:#a90016">NT$${totalPrize.toLocaleString()}</b>（未計入各期實際均分、稅務及兌領差異）。`;
+ $('#checkResult').innerHTML=`<b>歷史命中次數統計完成</b><br>頭獎 ${c[5].toLocaleString()} 次｜貳獎 ${c[4].toLocaleString()} 次｜參獎 ${c[3].toLocaleString()} 次｜肆獎 ${c[2].toLocaleString()} 次<br><span class="small">比對全部 ${draws.length.toLocaleString()} 期歷史開獎紀錄。</span>`;
+ return matches;
+ }catch(e){if(showAlert)alert(e.message);return []}}
+
+function csvDownload(name,rows){let blob=new Blob(['\ufeff'+rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n')],{type:'text/csv;charset=utf-8'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();URL.revokeObjectURL(a.href)}
+function saveCurrent(){try{let a=chosen(),name=prompt('替這組號碼取個名稱：','我的539組合');if(name===null)return;name=name.trim()||'未命名組合';if(saved.some(x=>x.nums.join(',')===a.join(','))){alert('這組號碼已存在號碼庫。');return}saved.push({id:Date.now(),name,nums:a,createdAt:new Date().toLocaleString('zh-TW')});persistSaved();renderSaved();populateBacktest();alert('已儲存至我的號碼庫。');}catch(e){alert(e.message)}}
+function persistSaved(){localStorage.setItem('539_saved_sets',JSON.stringify(saved))}
+function renderSaved(){let el=$('#savedList');if(!saved.length){el.innerHTML='<p class="small">尚未儲存任何組合。</p>';return}el.innerHTML=saved.map(s=>`<div class="combo"><div class="combohead"><strong>${escapeHtml(s.name)}</strong><button class="del" data-del="${s.id}">刪除</button></div><div class="ballrow">${s.nums.map(n=>`<span class="ball blue">${pad(n)}</span>`).join('')}</div><div class="actions"><button class="btn light" data-load="${s.id}">載入到查詢</button><button class="btn secondary" data-back="${s.id}">立即回測</button></div><div class="small">儲存時間：${escapeHtml(s.createdAt||'—')}</div></div>`).join('');$$('[data-del]').forEach(b=>b.onclick=()=>{saved=saved.filter(s=>s.id!=b.dataset.del);persistSaved();renderSaved();populateBacktest()});$$('[data-load]').forEach(b=>b.onclick=()=>{let s=saved.find(x=>x.id==b.dataset.load);$$('.num').forEach((x,i)=>x.value=s.nums[i]);$$('.tab').find(x=>x.dataset.tab==='check').click();runCheck()});$$('[data-back]').forEach(b=>b.onclick=()=>{let s=saved.find(x=>x.id==b.dataset.back);$('#backCombo').value=s.id;$$('.tab').find(x=>x.dataset.tab==='backtest').click();runBacktest()})}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function populateBacktest(){let sel=$('#backCombo');sel.innerHTML=saved.map(s=>`<option value="${s.id}">${escapeHtml(s.name)}｜${s.nums.map(pad).join(' ')}</option>`).join('');if(!saved.length)sel.innerHTML='<option value="">尚無儲存組合</option>'}
+function runBacktest(){let s=saved.find(x=>x.id==$('#backCombo').value);if(!s||!draws.length){$('#backResult').textContent='請先載入歷史資料並儲存一組號碼。';return}let n=$('#backPeriod').value;let list=n==='all'?draws:draws.slice(-Number(n));let counts={2:0,3:0,4:0,5:0};let rows=[];list.forEach(d=>{let hit=s.nums.filter(x=>d.nums.includes(x)).length;if(hit>=2){counts[hit]++;rows.push({...d,hit})}});let winnings=counts[2]*50+counts[3]*300+counts[4]*20000+counts[5]*8000000;let cost=list.length*50,net=winnings-cost,hitDraws=rows.length;
+$('#backResult').innerHTML=`<div class="chips"><span class="chip">${escapeHtml(s.name)}</span><span class="chip">${list.length.toLocaleString()} 期樣本</span></div><div class="grid" style="grid-template-columns:repeat(2,1fr);margin-top:12px"><div class="metric"><small>歷史中獎期數</small><strong>${hitDraws}</strong></div><div class="metric"><small>命中期比例</small><strong>${(hitDraws/list.length*100).toFixed(2)}%</strong></div><div class="metric"><small>累計投注成本</small><strong>NT$${cost.toLocaleString()}</strong></div><div class="metric"><small>固定獎額估算淨額</small><strong style="color:${net>=0?'var(--green)':'var(--red)'}">NT$${net.toLocaleString()}</strong></div></div><p>頭獎 ${counts[5]} 期｜貳獎 ${counts[4]} 期｜參獎 ${counts[3]} 期｜肆獎 ${counts[2]} 期<br>固定獎額估算總獎金：NT$${winnings.toLocaleString()}。此為歷史回測，不代表未來報酬。</p>`;
+$('#backTable').innerHTML=rows.length?`<table><thead><tr><th>日期</th><th>期別</th><th>開獎號碼</th><th>命中</th><th>獎項</th></tr></thead><tbody>${rows.sort((a,b)=>b.hit-a.hit||b.date.localeCompare(a.date)).map(d=>`<tr><td>${d.date}</td><td>${d.period}</td><td>${d.nums.map(pad).join(' · ')}</td><td>${d.hit}</td><td>${prize(d.hit)[0]}</td></tr>`).join('')}</tbody></table>`:'<p class="small">此組合在指定區間沒有命中2碼以上。</p>'}
+function renderFrequency(){let n=$('#freqWindow').value,list=n==='all'?draws:draws.slice(-Number(n));if(!list.length){$('#frequencyGrid').innerHTML='<p class="small">尚無歷史資料。</p>';return}let c=getCounts(list),max=Math.max(...c.slice(1));$('#frequencyGrid').innerHTML=Array.from({length:39},(_,i)=>i+1).map(n=>({n,v:c[n]})).sort((a,b)=>b.v-a.v).map(x=>`<div><div class="freqitem"><b>${pad(x.n)}</b><span>${x.v} 次</span></div><div class="bar"><i style="width:${Math.max(1,x.v/max*100)}%"></i></div></div>`).join('')}
+$$('.tab').forEach(b=>b.onclick=()=>{$$('.tab').forEach(x=>x.classList.toggle('active',x===b));$$('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+b.dataset.tab));if(b.dataset.tab==='saved')renderSaved();if(b.dataset.tab==='frequency')renderFrequency()});
+$('#useRecommendation').onclick=()=>{if(recommendedNumbers.length!==5)return;$$('.num').forEach((x,i)=>x.value=recommendedNumbers[i]);runCheck();document.querySelector('#view-check').scrollIntoView({behavior:'smooth',block:'start'});};
+$('#checkBtn').onclick=()=>runCheck();$('#randomBtn').onclick=()=>{let a=[];while(a.length<5){let n=1+Math.floor(Math.random()*39);if(!a.includes(n))a.push(n)}a.sort((x,y)=>x-y);$$('.num').forEach((x,i)=>x.value=a[i]);renderChosenFreq()};
+$('#saveCurrentBtn').onclick=saveCurrent;$('#refreshBtn').onclick=()=>loadData(true);$('#renderFreqBtn').onclick=renderFrequency;$('#runBacktest').onclick=runBacktest;
+const exportMatchesBtn=$('#exportMatches'); if(exportMatchesBtn) exportMatchesBtn.onclick=()=>{let rows=[['日期','期別','開獎號碼','命中數','獎項','固定獎金參考'],...matches.map(m=>[m.date,m.period,m.nums.map(pad).join(' '),m.hit,m.award[0],m.award[1]])];csvDownload('539歷史對獎.csv',rows)};
+$('#exportSaved').onclick=()=>{let a=document.createElement('a'),blob=new Blob([JSON.stringify(saved,null,2)],{type:'application/json'});a.href=URL.createObjectURL(blob);a.download='539我的號碼庫.json';a.click();URL.revokeObjectURL(a.href)};
+$('#importSaved').onchange=async e=>{try{let arr=JSON.parse(await e.target.files[0].text());if(!Array.isArray(arr))throw Error('格式錯誤');arr.forEach(s=>{if(Array.isArray(s.nums)&&s.nums.length===5&&new Set(s.nums).size===5&&s.nums.every(n=>Number.isInteger(n)&&n>=1&&n<=39)&&!saved.some(x=>x.nums.join(',')===s.nums.join(',')))saved.push({...s,id:s.id||Date.now()+Math.random()})});persistSaved();renderSaved();populateBacktest();alert('號碼庫匯入完成。')}catch(err){alert('匯入失敗：'+err.message)}};
+$$('.num').forEach(x=>x.addEventListener('change',renderChosenFreq));
+
+let deferredInstallPrompt = null;
+const installAppBtn = $('#installAppBtn');
+const installHelp = $('#installHelp');
+window.addEventListener('beforeinstallprompt', event => {
+  event.preventDefault(); deferredInstallPrompt = event;
+  if (installAppBtn) installAppBtn.style.display = 'inline-flex';
+});
+if (installAppBtn) installAppBtn.addEventListener('click', async () => {
+  if (!deferredInstallPrompt) {
+    if (installHelp) installHelp.textContent = 'iPhone：請用 Safari 開啟 → 分享 → 加入主畫面。';
+    return;
+  }
+  deferredInstallPrompt.prompt();
+  await deferredInstallPrompt.userChoice;
+  deferredInstallPrompt = null;
+  installAppBtn.style.display = 'none';
+});
+const shareLineBtn = $('#shareLineBtn');
+if (shareLineBtn) shareLineBtn.addEventListener('click', async () => {
+  const shareUrl = location.href.split('#')[0];
+  const lineUrl = 'https://social-plugins.line.me/lineit/share?url=' + encodeURIComponent(shareUrl);
+  if (navigator.share) {
+    try { await navigator.share({title: document.title, text: '今彩539數據研究室 2.0', url: shareUrl}); }
+    catch (e) { if (e.name !== 'AbortError') window.open(lineUrl, '_blank', 'noopener'); }
+  } else window.open(lineUrl, '_blank', 'noopener');
+});
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(console.warn));
+}
+
+renderSaved();populateBacktest();renderChosenFreq();loadData();
+</script></body></html>
